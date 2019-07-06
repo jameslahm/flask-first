@@ -36,10 +36,10 @@ def login():
         password=request.form['password']
         error=None
         db=get_db()
-        user=db.execute('SELECT * FROM user WHERE username=?',(username)).fetchone()
+        user=db.execute('SELECT * FROM user WHERE username=?',(username,)).fetchone()
         if user is None:
             error='Username is not existed'
-        elif check_password_hash(user['password'],password):
+        elif not check_password_hash(user['password'],password):
             error='Password is not accurate'
         
         if error is None:
