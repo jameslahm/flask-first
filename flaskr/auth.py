@@ -23,7 +23,7 @@ def register():
             error="User {} is already registered".format(username)
         
         if error is None:
-            db.execute('INSERT INTO user VALUES(username,passward)',(username,generate_password_hash(password)))
+            db.execute('INSERT INTO user(username,password) VALUES(?,?)',(username,generate_password_hash(password)))
             db.commit()
             return redirect(url_for('auth.login'))
         flash(error)
@@ -47,11 +47,11 @@ def login():
             session['user_id']=user['id']
             return redirect(url_for('index'))
         flash(error)
-    return redirect(url_for('auth.login'))
+    return render_template('auth/login.html')
 
 @bp.before_app_request
 def load_logged_in_user():
-    user_id=session['user_id']
+    user_id=session.get('user_id')
     db=get_db()
     
     if user_id is None:
