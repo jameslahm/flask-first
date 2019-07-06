@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS post;
 
 CREATE TABLE user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    author_id TEXT NOT NULL,
+    username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL
 );
 
