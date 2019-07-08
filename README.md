@@ -6,6 +6,8 @@ my first flask project
 * windows:
     
 ```    
+    cd ./Flask-Tutorial
+
     pip install -e .
 
     set FLASK_APP='flaskr'
@@ -16,6 +18,8 @@ my first flask project
 ```
 * linux:
 ```
+    cd ./Flask-Tutorial
+
     pip install -e .
     
     export FLASK_APP='flaskr'
@@ -29,7 +33,8 @@ my first flask project
 #### DOCKER部署：
 ```
 docker build -t flask-nginx-uwsgi .
+
 docker run -d -p 18080:80 \
-    -v /data:/web/instance/flaskr.sqlite flask-nginx-uwsgi
+    -v /data:/web/instance flask-nginx-uwsgi
 ```
 
